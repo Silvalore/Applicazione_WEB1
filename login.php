@@ -7,24 +7,18 @@ $password = $_POST['password'] ?? '';
 $file = 'users.json';
 $users = [];
 
-if(file_exists($file)){
+if (file_exists($file)) {
     $json = file_get_contents($file);
-    $users = json_decode($json, true);
-    if(!is_array($users)) $users = [];
+    $users = json_decode($json, true) ?: [];
 }
 
-$foundUser = null;
-foreach($users as $user){
-    if($user['username'] === $username){
-        $foundUser = $user;
-        break;
+foreach ($users as $user) {
+    if ($user['username'] === $username && password_verify($password, $user['password'])) {
+        $_SESSION['username'] = $username;
+        header("Location: dashboard.php");
+        exit;
     }
 }
 
-if($foundUser && password_verify($password, $foundUser['password'])){
-    $_SESSION['username'] = $username;
-    echo "Benvenuto, ";
-} else {
-    echo "Username o password errati. <a href='login.html'>Riprova</a>";
-}
+echo "Username o password errati. <a href='login.html'>Riprova</a>";
 ?>
