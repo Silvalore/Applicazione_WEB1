@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aggiungi Persona</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Aggiungi una persona</h2>
+    <form method="POST">
+        Nome: <input type="text" name="nome" required><br><br>
+        Cognome: <input type="text" name="cognome" required><br><br>
+        Data di nascita: <input type="date" name="data_nascita" required><br><br>
+        <button type="submit">Aggiungi</button>
+    </form>
+    <p><a href="dashboard.php">Torna alla dashboard</a></p>
+</body>
+</html>
